@@ -3,306 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Array object question</title>
+    <title>Array-of-Object</title>
     <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <h1 class="top">JS HandsOn-11-Day 1</h1>
-    <h2 class="top1">Guess the correct output and write down the reason behind the output in details.</h2>
-    <div class="question">
-       Q1.Create one function with zero parameter having a console statement.
-    </div>
-    <div class="answer">
-        <div>
-            <pre>
-                <b>Answer:</b>
-                function fs(){
-                    console.log("JS Coding Assignment");
-                }
-                fs()
+  </head>
+  <body>
+    <h1 class="topheading">Array Of Object</h1>
+    <br>
+    
+       <span style="color: blue;"> Question - "let studentRecords = [ {name: 'John', id: 123, marks : 98
+      }, {name: 'Baba', id: 101, marks : 23 }, {name: 'yaga', id: 200, marks :
+      45 }, {name: 'Wick', id: 115, marks : 75 } ] "</span><br><br>
+      <h3 class="question">
+        Q1."We are interested in retrieving only the students' names; all the
+        names should be in caps. ['JOHN', 'BABA', 'YAGA', 'WICK']"
+      </h3>
+      <br>
+      <pre>
+          studentRecords.map((ele) => {
+          console.log(ele.name.toUpperCase());
+        }); </pre>
+        <br>
+        <h3 class="output">
+            <span>OUTPUT :</span>
+            <span>JOHN</span>
+            <span> BABA</span>
+            <span>YAGA</span>
+            <span>WICK</span>
+          </h3>
+          <h3 class="question">
+            Q2."Suppose we have the same dataset as above but this time we want to
+               get the details of students who scored more than 50 marks. [{name:
+               'John', id: 123, marks: 98 },{name: 'Wick', id: 115, marks: 75 }]"
+          </h3>
+          <br>
+          <pre>
+            studentRecords.map((ele) => {
+              if (ele.marks > 50) {
+                console.log(ele);
+              }
+              // console.log(ele.name.toUpperCase());
+            });
+            // second method
+            let res = studentRecords.filter((el) => {
+              return el.marks > 50;
+            });
+            console.log(res);
+            
             </pre>
-        </div>
-       <div>
-            <pre>
-                <b>Output:</b>
-                JS Coding Assignment
+            <h3 class="output">
+                [{name: 'John', id: 123, marks: 98 },{name: 'Wick', id: 115, marks:
+                75 }]"
+            </h3>
+            <h3 class="question">
+                Q3. Retrieve the details of students who scored more than 50 marks and
+                have IDs greater than 120.
+              </h3>
+              <pre>
+
+                let res1 =studentRecords.filter((item)=>{
+           
+                return (item.marks>50 && item.id>120)
+                })
+                console.log(res1)
+      
             </pre>
-       </div> 
-        
-    </div>
-
-     <div class="question">
-        <span>Q2.</span> Create one function which takes two values as a parameter and print the sum of them as "Sum of 3, 4 is 7"
-     </div>
-     <div class="answer">
-         <div>
-             <pre>
-                <b>Answer:</b>
-                function fs(a,b){
-                    let sum = a +b;
-                    console.log('Sum = ',sum);
-                }
-                fs(3,4)
-             </pre>
-         </div>
-        <div>
-             <pre>
-                 <b>Output:</b>
-                 Sum =  7
-             </pre>
-        </div> 
-         
-     </div>
-
-     <div class="question">
-        Q3.Create one arrow function.
-     </div>
-     <div class="answer">
-         <div>
-             <pre>
-                <b>Answer:</b>
-                let value = (a,b)=>{ 
-                    console.log(`Value of ${a} x ${3} = ${a*b}`) 
-                };
-                value(2,3)
-             </pre>
-         </div>
-        <div>
-             <pre>
-                <b>Output:</b>
-                Value of 2 x 3 = 6
-             </pre>
-        </div> 
-         
-     </div>
-
-     <div class="question">
-        Q4.Print output:
-     </div>
-     <div class="answer">
-         <div>
-             <pre>
-                var x=21
-                var girl = function(){
-                    console.log(x)
-                    var x=20
-                }
-                girl();
-             </pre>
-         </div>
-        <div>
-             <pre>
-                 <b>Output:</b>
-                 undefined
-
-                 <b>Reason:</b>
-                 This is due to variable hosting, i.e. even though we have declared x inside the girl () function,
-                 the declaration itself is hoisted at the top of the function. Declared with var keyword, on trying
-                 to access the variable before initialisation gives undefined as output.
-                 Secondly, inside the girl() function the variable x has a local scope which shadows the outer x 
-                 within the function scope.
-             </pre>
-        </div> 
-         
-     </div>
-
-     <div class="question">
-        Q5.Print output:
-     </div>
-     <div class="answer">
-         <div>
-             <pre> 
-                var x = 21;
-                girl ();
-                console.log(x)
-                function girl() {
-                    console.log(x);
-                    var x = 20;
-                };
-             </pre>
-         </div>
-        <div>
-             <pre>
-                 <b>Output:</b>
-                 undefined
-                 21
-
-                 <b>Reason:</b>
-                 Like the previous question, js engine iterates the code line by line and the girl() function gets
-                 called first where hoising and shadowing runs simultanesously giving the output as "undefined".
-                 After that it prints 21.
-             </pre>
-        </div> 
-     </div>
-
-     <div class="question">
-        Q6.Print output
-     </div>
-     <div class="answer">
-         <div>
-             <pre>
-                var x = 21;
-                a();
-                b();
-                function a() {
-                x = 20;
-                console.log(x);
-                };
-                function b() {
-                    x = 40;
-                console.log(x);
-                };
-             </pre>
-         </div>
-        <div>
-             <pre>
-                <b>Output:</b>
-                20
-                40
-
-                <b>Reason</b>
-                Js code executes line by line. First the a() function is called, where finding for x the JS compiler 
-                goes to the previous line i.e. the global scope. Getting the value of x it consoles 
-                where it gets changed to 20. 
-                
-                In the second output, same scenario occurs. Only the difference is that the value of x 
-                changes to 40.
-             </pre>
-        </div> 
-         
-     </div>
-     <div class="question">
-        Q7. Write a function that accepts parameter n and returns factorial of n.
-     </div>
-     <div class="answer">
-         <div>
-             <pre>
-                <b>Answer:</b>
-                function fact(n){
-                    let fact=1
-                    for(let i=1;i<=n;i++)
-                        fact *=i
-                    return `Factorial of ${n} = ${fact}`;
-                }
-                console.log(fact(5))
-             </pre>
-         </div>
-        <div>
-             <pre>
-                <b>Output:</b>
-                Factorial of 5 = 120
-             </pre>
-        </div> 
-     </div>
-                                        <hr>
-     <h1>Day 2</h1>
-        <div class="question">
-            Q1. Guess the Output
-        </div>
-        <div class="answer">
-            <div>
-                <pre>
-                    function FindSum(a, b){
-                        return a + b;
-                    }
-                    function DisplayData(data, batch){
-                        console.log(`i am from ${data} and My batch is EA${batch}`)
-                    }
-                    DisplayData("PrepBytes", FindSum(10, 9));
+            
+              <h3 class="output">OUTPUT :  name: {'John', id: 123, marks: 98}</h3>
+              <h3 class="question">
+                Q4.Consider the same scenario we have discussed above, but this time
+                we would like to know the sum total of the marks of the students.
+              </h3>
+              <pre>
+               
+                 let sum=studentRecords.reduce((pre_value,cur_value)=>{
+                     return pre_value+=cur_value.marks;
+                },0)
+                console.log(sum)
                 </pre>
-            </div>
-            <div>
-                <pre>
-                <b>Output:</b>
-                i am from PrepBytes and My batch is EA19
+                <h3 class="output">OUTPUT : 241.</h3>
+                <h3 class="question">
+                    Q5.This time we want to get only the names of the students who scored
+                    more than 50 marks from the same dataset used above.
+                  </h3>
+                  <pre>
 
-                <b>Reason:</b>
-                First, FindSum() is called returning 19 as output.
-                Next, DisplayData() is called returning "Prepbytes" as data and 19 as batch 
-                respectively.
-                Then in  DisplayData values are evaluated printing the resulting string. 
-                </pre>
-            </div> 
-        </div>
-
-        <div class="question">
-            Q2. Guess the Output
-        </div>
-        <div class="answer">
-            <div>
-                <pre>
-                    Abc();
-                    const Abc = function(){
-                        let value = 20;
-                        console.log(value);
-                    }
-                </pre>
-            </div>
-            <div>
-                <pre>
-                    <b>Output:</b>
-                    ReferenceError: Cannot access 'Abc' before initialization
-
-                    <b>Reason:</b>
-                    The function expression is not hoisted so it cannot be invoked before it's creation.
-                </pre>
-            </div> 
-        </div>
-
-        <div class="question">
-              Q3. Guess the Output
-        </div>
-        <div class="answer">
-            <div>
-                <pre>
-                    var a = 10;
-                    (function (){
-                        console.log(a);
-                        var a = 20;
-                    })();
-                </pre>
-            </div>
-            <div>
-                <pre>
-                    <b>Output:</b>
-                    undefined
-
-                    <b>Reason:</b>
-                    Variable hoisting in javascript. Accessing the variable declared with var keyword before it's initialisation. 
-                    Resulting output -> undefined.
-                </pre>
-            </div> 
-        </div>
-
-         <div class="question">
-              Q4. Guess the Output
-        </div>
-        <div class="answer">
-            <div>
-                <pre>
-                    const greet =  function(name){
-                        return function(m){
-                            console.log(`Hi!! ${name}, ${m}`);
+                    studentRecords.map((item)=>{
+                        if(item.marks>50){
+                              console.log(item.name)
                         }
-                    }
-                    const greet_message = greet('EA19');
-                    greet_message("Welcome To PrepBytes")
-                </pre>
-            </div>
-            <div>
-                <pre>
-                    <b>Output:</b>
-                    Hi!! EA19, Welcome To PrepBytes
+                      })   
+                    </pre>
+                    <h3 class="output">OUTPUT : John Wick</h3>
+                    <h3 class="question">
+                        Q6.This time we are required to print the sum of marks of the students
+                        with id > 120.
+                      </h3>
+                      <pre> 
+                          var sum =0;
+                          for(var i=0;i<studentRecords.length;i++){
+                                if(studentRecords[i].id>120)
+                                {
+                                   sum+=studentRecords[i].marks
+                                }
+                          }
+                          console.log(sum)
+                      </pre>
+                      <h3 class="output">OUTPUT : 
+                        143
+                      </h3>
+                      <h3 class="question">Q7.This time we are required to print the total marks of the students with marks greater than 50 after
+                        a grace of 15 marks has been added to those students who scored less than 50.</h3>
+                      <pre>
+                          var sum2 = 0;
+                           for (var i = 0; i < studentRecords.length; i++) {
+                           if (studentRecords[i].marks > 50) {
+                           sum2 += studentRecords[i].marks;
+                        } else {
+                           sum2 += studentRecords[i].marks + 15;
+                         }
+                      }
+                          console.log(sum2);
+                          </pre>
+                          <h3 class="output">OUTPUT : 271.</h3>
+                          <h3 class="question">Q8.Create 6 objects , each object will have name, class, roll no as
+                            properties. Store these objects in an array of objects. </h3>
+                          <pre>
 
-                    <b>Reason:</b>
-                    First, we call the function greet with an argument "EA19" at line #9 and stores the returned 
-                    value in a variable called greet_message. After executing greet(), greet_message also becomes 
-                    a function because we return a function from greet().
-                    Secondly, we call the function  greet_message with an argument at line #10. After the execution 
-                    it prints -  "Hi!! EA19, Welcome to Prepbytes". 
-                    In the given program, the concept of closures comes into action.
-                </pre>
-            </div> 
-        </div>
-</body>
-</html>
+                            var obj1={
+                                name :"",
+                                class:'v',
+                                roll_num:53
+                            }
+                            var obj2={
+                                name :"Vikrant",
+                                class:'vi',
+                                roll_num:64
+                            }
+                            var obj3={
+                                name :"Bunty",
+                                class:'vii',
+                                roll_num:43
+                            }
+                            var obj4={
+                                name :"Vishal",
+                                class:'viii',
+                                roll_num:44
+                            }
+                            var obj5={
+                                name :"Ashish",
+                                class:'ix',
+                                roll_num:88
+                            }
+                            var obj6={
+                                name :"Anuj",
+                                class:'x',
+                                roll_num:27
+                            }
+                            var arr=[];
+                          
+                          
+                            arr.push(obj1);
+                            arr.push(obj2);
+                            arr.push(obj3);
+                            arr.push(obj4);
+                            arr.push(obj5);
+                            arr.push(obj6);
+                            console.log(arr)
+                              </pre>
+                        <h3 class="output">OUTPUT : [{name: 'Dabloo', class: 'v', roll_num: 33}1: {name: 'Vishal', class: 'vi', roll_num: 34}2:
+                        {name: 'Babloo', class: 'vii', roll_num: 43}3: {name: 'Vimal', class: 'viii', roll_num: 54}4: {name:
+                        'Nishant', class: 'ix', roll_num: 93}5: {name: 'Sudhanshu', class: 'x', roll_num: 31}]</h3>
+                      
+   </body>
+   </html>
